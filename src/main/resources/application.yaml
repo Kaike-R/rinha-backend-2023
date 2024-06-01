@@ -1,0 +1,14 @@
+spring:
+  application:
+    name: rinha2023
+---
+spring:
+  datasource:
+    url: jdbc:postgresql://db:5432/postgres #jdbc:postgresql://localhost:5432/postgres
+    username: postgres
+    password: example
+    hikari:
+      connection-timeout: 120000
+      minimum-idle: 30
+      #maximum-pool-size: 20
+      idle-time: 10000
