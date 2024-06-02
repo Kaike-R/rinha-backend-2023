@@ -6,8 +6,9 @@ services:
       dockerfile: Dockerfile
     depends_on:
       - db
-    expose:
-      - 8080
+    # expose:
+    #   - 8080
+    network_mode: host 
     deploy:
       resources:
         limits:
@@ -18,10 +19,13 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+    environment:
+      - SERVER_PORT=8081
     depends_on:
       - db
-    expose:
-      - 8080
+    # expose:
+    #   - 8081
+    network_mode: host 
     deploy:
       resources:
         limits:
@@ -35,10 +39,11 @@ services:
     depends_on:
       - app1
       - app2
-    ports:
-      - "80:80"
-      - "443:443"
-      - "9999:9999"
+    # ports:
+    #   - "80:80"
+    #   - "443:443"
+    #   - "9999:9999"
+    network_mode: host
     deploy:
       resources:
         limits:
@@ -48,10 +53,11 @@ services:
     image: postgres
     restart: always
     shm_size: 128mb
-    expose:
-      - 5432
-    ports:
-      - 5432:5432
+    # expose:
+    #   - 5432
+    # ports:
+    #   - 5432:5432
+    network_mode: host
     deploy:
       resources:
         limits:
@@ -60,6 +66,7 @@ services:
     volumes:
       - type: tmpfs
         target: /dev/shm
-
     environment:
-      POSTGRES_PASSWORD: example
+      - POSTGRES_HOST_AUTH_METHOD=trust
+
+    #   - POSTGRES_PASSWORD=example

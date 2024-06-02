@@ -1,12 +1,16 @@
+server:
+  port: ${SERVER_PORT:8080}
+
+
 spring:
   application:
     name: rinha2023
 ---
 spring:
   datasource:
-    url: jdbc:postgresql://db:5432/postgres #jdbc:postgresql://localhost:5432/postgres
+    url: jdbc:postgresql://localhost:5432/postgres #jdbc:postgresql://db:5432/postgres
     username: postgres
-    password: example
+    #password: example
     hikari:
       connection-timeout: 120000
       minimum-idle: 30
