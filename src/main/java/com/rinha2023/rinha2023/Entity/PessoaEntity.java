@@ -2,6 +2,7 @@ package com.rinha2023.rinha2023.Entity;
 
 
 import org.hibernate.validator.constraints.UniqueElements;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -18,7 +19,8 @@ public class PessoaEntity {
     @Size(max = 32, message = "apelido precisa der 32 caracteres")
     @UniqueElements(message = "apelido é unico")
     private String apelido;
-    @NotNull
+    @NotNull(message = "A data de nascimento é obrigatoria")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date nascimento;
     @Size(max = 32, message = "Skill cannot be longer than 32 characters")
     private List<@Size(max = 32) String> stack;
