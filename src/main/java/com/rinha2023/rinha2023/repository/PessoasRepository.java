@@ -89,8 +89,8 @@ public class PessoasRepository {
     }
 
     public List<PessoaEntity> search(String string) {
-        String sql = "SELECT * FROM pessoas WHERE apelido ILIKE '%' || ? || '%' OR nome ILIKE '%' || ? || '%' OR stack ILIKE '%' || ? || '%' LIMIT 50";
-
+        //String sql = "SELECT * FROM pessoas WHERE apelido ILIKE '%' || ? || '%' OR nome ILIKE '%' || ? || '%' OR stack ILIKE '%' || ? || '%' LIMIT 50";
+        String sql = "SELECT * FROM pessoas WHERE searchable ILIKE '%' || ? || '%' ";
         return jdbcTemplate.query(sql, new RowMapper<PessoaEntity>() {
             public PessoaEntity mapRow(ResultSet rs, int rowNum) throws SQLException {
                 PessoaEntity pessoaEntity = new PessoaEntity();
@@ -102,7 +102,7 @@ public class PessoasRepository {
                 return pessoaEntity;
             }
 
-        }, string, string, string);
+        }, string);
 
 
     }
